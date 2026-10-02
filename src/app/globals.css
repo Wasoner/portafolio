@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  /* Matte palette — no gradients, no neon */
+  --background: #0d0e12; /* negro mate / grafito ultra oscuro */
+  --foreground: #ededed; /* blanco roto mate */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Design tokens: surfaces, borders, type and the single brand accent. */
+@theme {
+  --color-canvas: #0d0e12;
+  --color-surface: #181a20;
+  --color-surface-2: #1e2026;
+  --color-line: #2a2d36;
+  --color-ink: #ededed;
+  --color-ash: #9ba1b0;
+  --color-accent: #7c5cfc;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored sections clear of the fixed header. */
+  scroll-padding-top: 5.5rem;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Respect the OS-level motion preference: parks CSS animation and the
+   particle canvas, which also checks this query before starting its loop. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0e12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2d36;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3e4a;
+}
