@@ -8,16 +8,16 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 import { profile } from "@/data/profile";
-import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Paperclip, X } from "lucide-react";
 
 export function ContactSection() {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     subject: "",
     message: "",
   });
+  const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (
@@ -26,22 +26,41 @@ export function ContactSection() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selected = e.target.files[0];
+      if (selected.size > 5 * 1024 * 1024) {
+        alert("El archivo no debe superar los 5 MB.");
+        return;
+      }
+      setFile(selected);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.email || !formData.message) return;
 
     setStatus("loading");
 
     try {
+      const body = new FormData();
+      body.append("email", formData.email);
+      body.append("subject", formData.subject);
+      body.append("message", formData.message);
+      if (file) {
+        body.append("file", file);
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body,
       });
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ email: "", subject: "", message: "" });
+        setFile(null);
 
         // Loaded on demand so the ~10 KB library stays out of the initial bundle.
         const { default: confetti } = await import("canvas-confetti");
@@ -49,7 +68,7 @@ export function ContactSection() {
           particleCount: 60,
           spread: 60,
           origin: { y: 0.7 },
-          colors: ["#7c5cfc", "#8b6dfc", "#9ba1b0"],
+          colors: ["#6366f1", "#818cf8", "#949ba8"],
         });
       } else {
         setStatus("error");
@@ -223,41 +242,23 @@ export function ContactSection() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Name */}
-                    <div>
-                      <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
-                        {t.contact.form.name} *
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder={t.contact.form.namePlaceholder}
-                        className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
-                      />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
-                        {t.contact.form.email} *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder={t.contact.form.emailPlaceholder}
-                        className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
-                      />
-                    </div>
+                  {/* Correo */}
+                  <div>
+                    <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
+                      {t.contact.form.email} *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={t.contact.form.emailPlaceholder}
+                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
+                    />
                   </div>
 
-                  {/* Subject */}
+                  {/* Asunto */}
                   <div>
                     <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
                       {t.contact.form.subject}
@@ -272,7 +273,7 @@ export function ContactSection() {
                     />
                   </div>
 
-                  {/* Message */}
+                  {/* Detalles (Mensaje) */}
                   <div>
                     <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
                       {t.contact.form.message} *
@@ -288,6 +289,55 @@ export function ContactSection() {
                     />
                   </div>
 
+                  {/* Adjuntar Archivos */}
+                  <div>
+                    <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
+                      {t.contact.form.fileAttachment}
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        id="contact-file-input"
+                        onChange={handleFileChange}
+                        className="hidden"
+                        accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.txt,.zip"
+                      />
+                      {file ? (
+                        <div className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-surface-2 border border-accent/40 text-xs text-ink">
+                          <div className="flex items-center gap-2 truncate">
+                            <Paperclip className="w-4 h-4 text-accent shrink-0" />
+                            <span className="truncate">{file.name}</span>
+                            <span className="text-ash font-mono text-[11px]">
+                              ({(file.size / 1024).toFixed(1)} KB)
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setFile(null)}
+                            className="p-1 text-ash hover:text-ink transition-colors ml-2"
+                            title="Remover archivo"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ) : (
+                        <label
+                          htmlFor="contact-file-input"
+                          className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-canvas border border-dashed border-line hover:border-accent/50 text-xs text-ash hover:text-ink cursor-pointer transition-colors"
+                        >
+                          <span className="flex items-center gap-2">
+                            <Paperclip className="w-4 h-4 text-ash" />
+                            <span>Seleccionar archivo desde tu dispositivo</span>
+                          </span>
+                          <span className="text-[11px] font-mono text-ash/80">Máx. 5 MB</span>
+                        </label>
+                      )}
+                    </div>
+                    <span className="block text-[11px] text-ash/70 mt-1">
+                      {t.contact.form.fileHint}
+                    </span>
+                  </div>
+
                   {status === "error" && (
                     <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs">
                       <AlertCircle className="w-4 h-4 shrink-0" />
@@ -295,6 +345,7 @@ export function ContactSection() {
                     </div>
                   )}
 
+                  {/* Botón Enviar */}
                   <Button
                     type="submit"
                     variant="primary"
