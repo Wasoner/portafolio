@@ -34,14 +34,10 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
           {project.category}
         </span>
 
-        {project.isPrivate ? (
+        {project.isPrivate && (
           <Badge variant="warning" className="text-[10px] gap-1">
             <Lock className="w-2.5 h-2.5" />
             <span>{t.projects.privateRepo}</span>
-          </Badge>
-        ) : (
-          <Badge variant="success" className="text-[10px]">
-            <span>Open Source</span>
           </Badge>
         )}
       </div>
@@ -92,6 +88,7 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
               rel="noopener noreferrer"
               className="inline-block"
               title={t.projects.viewGithub}
+              aria-label={t.projects.viewGithub}
             >
               <Button size="icon" variant="outline" className="w-8 h-8 p-0">
                 <GithubIcon className="w-3.5 h-3.5" />

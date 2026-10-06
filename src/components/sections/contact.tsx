@@ -61,34 +61,34 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 relative z-10">
+    <section id="contact" className="py-20 sm:py-24 relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.35 }}
             className="mb-3"
           >
             <Badge variant="accent">{t.contact.badge}</Badge>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-4"
+            transition={{ duration: 0.35, delay: 0.08 }}
+            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3"
           >
             {t.contact.title}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-ash text-base"
+            transition={{ duration: 0.35, delay: 0.15 }}
+            className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
           >
             {t.contact.subtitle}
           </motion.p>
@@ -98,27 +98,27 @@ export function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Info & Socials */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="lg:col-span-5 space-y-6"
           >
-            <Card className="p-6 space-y-6">
+            <Card className="p-6 space-y-6 bg-surface">
               <div>
-                <h3 className="text-lg font-semibold text-ink mb-1">
+                <h3 className="text-base sm:text-lg font-semibold text-ink mb-1">
                   {t.contact.infoTitle}
                 </h3>
                 <p className="text-xs text-ash">{t.contact.infoSubtitle}</p>
               </div>
 
               {/* Direct Info Items */}
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 <div className="flex items-center gap-3.5 p-3 rounded-xl bg-surface-2 border border-line">
-                  <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent">
+                  <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[11px] font-mono text-ash block uppercase">
                       {t.contact.emailLabel}
                     </span>
@@ -132,7 +132,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-3.5 p-3 rounded-xl bg-surface-2 border border-line">
-                  <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent">
+                  <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
@@ -149,43 +149,43 @@ export function ContactSection() {
                 </div>
 
                 <div className="flex items-center gap-3.5 p-3 rounded-xl bg-surface-2 border border-line">
-                  <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent">
+                  <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
                     <span className="text-[11px] font-mono text-ash block uppercase">
                       {t.contact.locationLabel}
                     </span>
-                    <span className="text-sm font-medium text-ink">
+                    <span className="text-xs sm:text-sm font-medium text-ink">
                       {t.contact.locationValue}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* Professional Profiles */}
               <div>
                 <span className="text-xs font-medium text-ash block mb-3 font-mono">
                   {t.contact.socialLabel}
                 </span>
-                <div className="flex items-center gap-3">
-                  <a
-                    href={profile.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors text-xs font-medium"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    <span>GitHub · {profile.githubHandle}</span>
-                  </a>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <a
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors text-xs font-medium"
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors text-xs font-medium"
                   >
-                    <LinkedinIcon className="w-4 h-4" />
-                    <span>LinkedIn</span>
+                    <LinkedinIcon className="w-4 h-4 text-accent" />
+                    <span>LinkedIn Perfil</span>
+                  </a>
+                  <a
+                    href={profile.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors text-xs font-medium"
+                  >
+                    <GithubIcon className="w-4 h-4 text-accent" />
+                    <span>GitHub Repos</span>
                   </a>
                 </div>
               </div>
@@ -300,7 +300,7 @@ export function ContactSection() {
                     variant="primary"
                     size="lg"
                     disabled={status === "loading"}
-                    className="w-full"
+                    className="w-full text-sm font-semibold"
                   >
                     {status === "loading" ? (
                       <span>{t.contact.form.sending}</span>

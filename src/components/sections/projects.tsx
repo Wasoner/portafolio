@@ -33,34 +33,34 @@ export function ProjectsSection() {
       : projectsData.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-24 relative z-10">
+    <section id="projects" className="py-20 sm:py-24 relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.35 }}
             className="mb-3"
           >
             <Badge variant="accent">{t.projects.badge}</Badge>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-4"
+            transition={{ duration: 0.35, delay: 0.08 }}
+            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3"
           >
             {t.projects.title}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-ash text-base"
+            transition={{ duration: 0.35, delay: 0.15 }}
+            className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
           >
             {t.projects.subtitle}
           </motion.p>

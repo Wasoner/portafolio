@@ -20,16 +20,15 @@ export const profile = {
   phoneHref: "+56929813629",
 
   location: "Santiago / Concepción, Chile",
-  availability: "Remoto / Híbrido / Presencial",
+  availability: "Disponible para incorporación inmediata (Remoto / Híbrido / Presencial)",
 
   github: "https://github.com/Wasoner",
   githubHandle: "Wasoner",
   linkedin: "https://www.linkedin.com/in/cristobal-rivas-paul",
   linkedinHandle: "cristobal-rivas-paul",
-  instagram:
-    "https://www.instagram.com/invites/contact/?i=mbnkd20djdp2&utm_content=orl57u",
 
   /** Deployed origin — set NEXT_PUBLIC_SITE_URL in production. */
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   siteName: "Cristóbal Rivas",
 } as const;
+

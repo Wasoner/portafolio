@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* Matte palette — no gradients, no neon */
-  --background: #0d0e12; /* negro mate / grafito ultra oscuro */
-  --foreground: #ededed; /* blanco roto mate */
+  /* Matte palette — no gradients, no neon, graphite & muted accent */
+  --background: #0d0f14; /* grafito mate oscuro */
+  --foreground: #e6e8ec; /* blanco roto mate sobrio */
 }
 
 @theme inline {
@@ -13,16 +13,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Design tokens: surfaces, borders, type and the single brand accent. */
+/* Design tokens: surfaces, borders, type and the muted matte brand accent. */
 @theme {
-  --color-canvas: #0d0e12;
-  --color-surface: #181a20;
-  --color-surface-2: #1e2026;
-  --color-line: #2a2d36;
-  --color-ink: #ededed;
-  --color-ash: #9ba1b0;
-  --color-accent: #7c5cfc;
+  --color-canvas: #0d0f14;
+  --color-surface: #141720;
+  --color-surface-2: #1b1e28;
+  --color-line: #262a36;
+  --color-ink: #e6e8ec;
+  --color-ash: #949ba8;
+  --color-accent: #6366f1; /* azul/índigo mate refinado, sin saturación cegadora */
 }
+
 
 html {
   scroll-behavior: smooth;

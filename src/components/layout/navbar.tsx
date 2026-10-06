@@ -18,7 +18,6 @@ export function Navbar() {
       "hero",
       "about",
       "projects",
-      "experience",
       "contact",
     ];
 
@@ -76,7 +75,6 @@ export function Navbar() {
   const navLinks = [
     { href: "#about", label: t.nav.about, id: "about" },
     { href: "#projects", label: t.nav.projects, id: "projects" },
-    { href: "#experience", label: t.nav.experience, id: "experience" },
     { href: "#contact", label: t.nav.contact, id: "contact" },
   ];
 

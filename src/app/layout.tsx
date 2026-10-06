@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 const siteUrl = profile.siteUrl;
 
 const SITE_NAME = profile.siteName;
-const TITLE = `${profile.jobTitle} | ${profile.role} — React, Java & APIs`;
+const TITLE = `${profile.jobTitle} | ${profile.role} — Soluciones Tecnológicas & Full Stack`;
 const DESCRIPTION =
-  "Portafolio de Cristóbal Rivas Paul, Ingeniero Civil en Informática y Desarrollador Full Stack. Experiencia en React, React Native, Angular, Java (Spring Boot y Javalin), PHP y APIs RESTful. Proyectos DOMU y TaskFlow API en GitHub.";
+  "Portafolio profesional de Cristóbal Rivas Paul, Ingeniero Civil en Informática y Desarrollador Full Stack. Especializado en APIs RESTful, SaaS B2B, React, Angular, Java (Spring Boot) y bases de datos.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -31,7 +31,9 @@ export const metadata: Metadata = {
   keywords: [
     "Full Stack Developer",
     "Desarrollador Full Stack",
-    "Cristóbal Rivas",
+    "Ingeniero Civil en Informática",
+    "Cristóbal Rivas Paul",
+    "Wasoner",
     "React",
     "React Native",
     "Angular",
@@ -39,16 +41,17 @@ export const metadata: Metadata = {
     "Java",
     "Spring Boot",
     "Javalin",
-    "PHP",
     "FastAPI",
+    "Python",
+    "PHP",
     "MySQL",
     "PostgreSQL",
     "SQL Server",
     "MongoDB",
     "API REST",
     "Tailwind CSS",
-    "DOMU",
-    "TaskFlow",
+    "Santiago Chile",
+    "Concepción Chile",
   ],
   authors: [{ name: profile.fullName }],
   creator: profile.fullName,
@@ -82,17 +85,12 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  // Uncomment once /icon.png and an OG image exist in `public/`:
-  // icons: { icon: "/icon.png", apple: "/icon.png" },
-  // openGraph: { images: [{ url: "/og.png", width: 1200, height: 630 }] },
-  // NOTE: `siteUrl` comes from NEXT_PUBLIC_SITE_URL — set it before deploying so
-  // canonical, OpenGraph and the sitemap/robots URLs point at the real domain.
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0d0e12",
+  themeColor: "#0d0f14",
   colorScheme: "dark",
 };
 

@@ -16,13 +16,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary:
-        "bg-accent text-white hover:bg-accent/90 border border-accent/60",
+        "bg-accent text-white hover:bg-accent/85 border border-accent/40 shadow-none font-medium",
       secondary:
-        "bg-surface-2 text-ink border border-line hover:border-accent/40",
+        "bg-surface-2 text-ink border border-line hover:border-accent/30 shadow-none",
       outline:
-        "bg-transparent text-ash border border-line hover:text-ink hover:border-accent/40",
+        "bg-transparent text-ash border border-line hover:text-ink hover:border-accent/30 hover:bg-surface-2/40 shadow-none",
       ghost:
-        "bg-transparent text-ash hover:text-ink hover:bg-surface",
+        "bg-transparent text-ash hover:text-ink hover:bg-surface shadow-none",
     };
 
     const sizes = {
