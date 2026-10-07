@@ -79,21 +79,29 @@ performance:
       {/* Background Grid Pattern */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-60 z-0"
+        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-90 z-0"
       />
 
-      {/* Ambient Gradient Glows (Left soft blue orb, Right purple/cyan orb) */}
+      {/* Ambient Gradient Glows (Left vibrant blue/cyan orb, Right neon purple/magenta & emerald/cyan orbs) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-16 -left-20 w-[420px] h-[420px] bg-blue-600/15 rounded-full blur-[130px] z-0"
+        className="pointer-events-none absolute -top-12 -left-16 w-[450px] h-[450px] bg-blue-600/40 rounded-full blur-[90px] z-0"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/4 -right-24 w-[480px] h-[480px] bg-purple-600/18 rounded-full blur-[140px] z-0"
+        className="pointer-events-none absolute top-16 -left-10 w-[300px] h-[300px] bg-indigo-500/35 rounded-full blur-[80px] z-0"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-16 right-10 w-[360px] h-[360px] bg-emerald-500/12 rounded-full blur-[120px] z-0"
+        className="pointer-events-none absolute top-6 -right-16 w-[480px] h-[480px] bg-[#a855f7]/45 rounded-full blur-[95px] z-0"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-1/3 -right-20 w-[420px] h-[420px] bg-[#d946ef]/40 rounded-full blur-[100px] z-0"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-10 right-4 w-[380px] h-[380px] bg-[#06b6d4]/38 rounded-full blur-[90px] z-0"
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8">
