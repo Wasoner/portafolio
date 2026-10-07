@@ -2,22 +2,20 @@
 
 import React from "react";
 import { useLanguage } from "@/context/language-context";
-import { Languages } from "lucide-react";
+import { Globe } from "lucide-react";
 
 export function LanguageToggle() {
-  const { language, toggleLanguage } = useLanguage();
+  const { toggleLanguage } = useLanguage();
 
   return (
     <button
       onClick={toggleLanguage}
-      className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-transparent border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors duration-200 cursor-pointer"
-      title={language === "es" ? "Switch to English" : "Cambiar a Español"}
+      className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium bg-surface/80 border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors duration-200 cursor-pointer"
+      title="Cambiar idioma / Switch language"
       aria-label="Cambiar idioma / Switch language"
     >
-      <Languages className="w-3.5 h-3.5 transition-colors duration-200 group-hover:text-accent" />
-      <span className="tracking-wider uppercase font-mono">
-        {language === "es" ? "ES" : "EN"}
-      </span>
+      <Globe className="w-3.5 h-3.5 text-ash group-hover:text-accent transition-colors" />
+      <span className="font-mono text-[11px] tracking-wide">ES/EN</span>
     </button>
   );
 }

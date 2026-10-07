@@ -94,28 +94,28 @@ export function Navbar() {
           isScrolled ? "opacity-100" : "opacity-0"
         }`}
       />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Brand Logo — plain monospace wordmark */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+        {/* Brand Logo — bold Wasoner.dev like screenshot */}
         <a
           href="#hero"
-          className="font-mono text-base font-semibold tracking-tight text-ink hover:text-accent transition-colors duration-200 focus:outline-none"
+          className="text-xl sm:text-2xl font-bold tracking-tight text-white hover:text-white/90 transition-colors duration-200 focus:outline-none flex items-center gap-0.5"
         >
-          {profile.brand}
-          <span className="text-accent">{profile.brandSuffix}</span>
+          <span>{profile.brand}</span>
+          <span className="text-[#818cf8]">{profile.brandSuffix}</span>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-lg text-sm transition-colors duration-200 ${
+                className={`text-sm font-medium transition-colors duration-200 ${
                   isActive
-                    ? "text-accent"
-                    : "text-ash hover:text-ink"
+                    ? "text-white"
+                    : "text-ash hover:text-white"
                 }`}
               >
                 {link.label}
@@ -124,25 +124,9 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Actions (Language Switch + CV + Contact) */}
-        <div className="hidden md:flex items-center gap-2">
+        {/* Actions (Language Switch ES/EN like in screenshot) */}
+        <div className="hidden md:flex items-center gap-3">
           <LanguageToggle />
-          <a
-            href="/cv.pdf"
-            download="CV-Cristobal-Rivas-Paul.pdf"
-            title={t.nav.downloadCV}
-          >
-            <Button size="sm" variant="ghost">
-              <Download className="w-3.5 h-3.5" />
-              <span>{t.nav.downloadCV}</span>
-            </Button>
-          </a>
-          <a href="#contact">
-            <Button size="sm" variant="primary">
-              <Send className="w-3.5 h-3.5" />
-              <span>{t.hero.contactMe}</span>
-            </Button>
-          </a>
         </div>
 
         {/* Mobile Hamburger */}
