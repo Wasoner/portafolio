@@ -86,36 +86,8 @@ performance:
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] flex items-center justify-center py-24 sm:py-32 overflow-hidden"
+      className="relative min-h-[92vh] flex items-center justify-center py-24 sm:py-32"
     >
-      {/* Background Grid Pattern */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-90 z-0"
-      />
-
-      {/* Ambient Gradient Glows (Left vibrant blue/cyan orb, Right neon purple/magenta & emerald/cyan orbs) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-10 -left-14 w-[500px] h-[500px] bg-blue-600/45 rounded-full blur-[85px] z-0"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-12 -left-8 w-[340px] h-[340px] bg-indigo-500/40 rounded-full blur-[75px] z-0"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-4 -right-12 w-[520px] h-[520px] bg-[#a855f7]/50 rounded-full blur-[90px] z-0"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-1/4 -right-16 w-[450px] h-[450px] bg-[#d946ef]/45 rounded-full blur-[95px] z-0"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-8 right-2 w-[420px] h-[420px] bg-[#06b6d4]/45 rounded-full blur-[85px] z-0"
-      />
-
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
           {/* Left Column: Heading, Subtitle, CTAs & Social Links */}
