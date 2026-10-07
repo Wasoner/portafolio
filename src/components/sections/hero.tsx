@@ -34,35 +34,47 @@ export function HeroSection() {
   const codeSnippets = {
     stack: `{
   "engineer": "Cristóbal Rivas Paul",
-  "title": "Ingeniero Civil en Informática",
+  "title": "Ing. Civil en Informática",
   "core_stack": {
-    "backend": ["Java 21 (Spring Boot, Javalin)", "Python (FastAPI)", "PHP"],
-    "frontend": ["React", "Next.js 16", "React Native", "Angular", "TypeScript"],
-    "persistence": ["PostgreSQL 16", "MySQL 8.0", "SQL Server", "MongoDB 7"],
-    "infrastructure": ["Docker", "Linux", "CI/CD Pipelines", "Git Flow"]
+    "backend": [
+      "Java 21 (Spring Boot, Javalin)",
+      "Python (FastAPI)",
+      "PHP"
+    ],
+    "frontend": [
+      "React", "Next.js", "Angular",
+      "React Native", "TypeScript"
+    ],
+    "persistence": [
+      "PostgreSQL 16", "MySQL 8.0",
+      "SQL Server", "MongoDB 7"
+    ],
+    "infrastructure": [
+      "Docker", "Linux", "CI/CD", "Git"
+    ]
   },
-  "focus": "High-availability APIs, clean layered architectures & business SaaS"
+  "focus": "High-availability APIs & SaaS"
 }`,
     architecture: `# Architectural Blueprint & Standards
 patterns:
   - Clean Architecture & Layered Domain Design
   - Domain-Driven Design (DDD) modular boundaries
-  - Multi-tenant tenant-isolation relational modeling
-  - RESTful API specification with strict OpenAPI / Swagger
+  - Multi-tenant tenant-isolation relational schema
+  - Strict RESTful APIs (OpenAPI / Swagger)
 security:
   - JWT token validation & claims verification
   - BCrypt cryptographic salted hashing
-  - Database defense-in-depth with CHECK & UNIQUE constraints
+  - DB defense-in-depth (CHECK & UNIQUE constraints)
 performance:
   - Connection pooling with HikariCP
-  - Query indexing & asynchronous task processing`,
+  - Query indexing & async task processing`,
     philosophy: `## Engineering Principles
 
-1. Code for maintainability: readability precedes cleverness.
-2. Architecture for resilience: fail gracefully, log meaningfully.
-3. Measure before optimizing: benchmark bottlenecks, don't guess.
-4. Business impact first: technology exists to solve real human problems.
-5. Continuous refinement: strict typing, automated test suites and agile iterations.`,
+1. Maintainability: readability precedes cleverness.
+2. Resilience: fail gracefully, log meaningfully.
+3. Measurement: benchmark bottlenecks, never guess.
+4. Business impact: solve real problems with code.
+5. Code, test, iterate: strict typing & agile sprints.`,
   };
 
   const handleCopy = () => {
@@ -85,39 +97,38 @@ performance:
       {/* Ambient Gradient Glows (Left vibrant blue/cyan orb, Right neon purple/magenta & emerald/cyan orbs) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-12 -left-16 w-[450px] h-[450px] bg-blue-600/40 rounded-full blur-[90px] z-0"
+        className="pointer-events-none absolute -top-10 -left-14 w-[500px] h-[500px] bg-blue-600/45 rounded-full blur-[85px] z-0"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-16 -left-10 w-[300px] h-[300px] bg-indigo-500/35 rounded-full blur-[80px] z-0"
+        className="pointer-events-none absolute top-12 -left-8 w-[340px] h-[340px] bg-indigo-500/40 rounded-full blur-[75px] z-0"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-6 -right-16 w-[480px] h-[480px] bg-[#a855f7]/45 rounded-full blur-[95px] z-0"
+        className="pointer-events-none absolute top-4 -right-12 w-[520px] h-[520px] bg-[#a855f7]/50 rounded-full blur-[90px] z-0"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/3 -right-20 w-[420px] h-[420px] bg-[#d946ef]/40 rounded-full blur-[100px] z-0"
+        className="pointer-events-none absolute top-1/4 -right-16 w-[450px] h-[450px] bg-[#d946ef]/45 rounded-full blur-[95px] z-0"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-4 w-[380px] h-[380px] bg-[#06b6d4]/38 rounded-full blur-[90px] z-0"
+        className="pointer-events-none absolute -bottom-8 right-2 w-[420px] h-[420px] bg-[#06b6d4]/45 rounded-full blur-[85px] z-0"
       />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-center">
           {/* Left Column: Heading, Subtitle, CTAs & Social Links */}
-          <div className="lg:col-span-6 text-left">
+          <div className="lg:col-span-5 text-left flex flex-col justify-center">
             {/* Main Title */}
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.08]"
+              className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-white mb-6 leading-[1.12]"
             >
-              Hola, soy Cristóbal
-              <br />
-              Rivas Paul
+              <span className="block">Hola, soy Cristóbal</span>
+              <span className="block text-white">Rivas Paul</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -180,12 +191,12 @@ performance:
             </motion.div>
           </div>
 
-          {/* Right Column: Code Terminal Window */}
+          {/* Right Column: Code Terminal Window with expanded width */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.45, delay: 0.2 }}
-            className="lg:col-span-6 w-full text-left rounded-2xl bg-[#111319]/95 border border-[#232734] overflow-hidden shadow-2xl shadow-black/70 backdrop-blur-md"
+            className="lg:col-span-7 w-full text-left rounded-2xl bg-[#111319]/95 border border-[#232734] overflow-hidden shadow-2xl shadow-black/70 backdrop-blur-md"
           >
             {/* Terminal Window Header Bar */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#181b24] border-b border-[#232734] select-none">
@@ -235,9 +246,9 @@ performance:
               </div>
             </div>
 
-            {/* Terminal Code Body */}
-            <div className="p-5 bg-[#0b0d12] font-mono text-xs sm:text-[13px] text-gray-300 overflow-x-auto leading-relaxed min-h-[300px]">
-              <pre className="whitespace-pre">
+            {/* Terminal Code Body (whitespace-pre-wrap to avoid side scrolling) */}
+            <div className="p-4 sm:p-5 bg-[#0b0d12] font-mono text-xs sm:text-[13px] text-gray-200 leading-relaxed min-h-[340px] max-h-[460px] overflow-y-auto">
+              <pre className="whitespace-pre-wrap break-words font-mono">
                 <code>{codeSnippets[activeTab]}</code>
               </pre>
             </div>
