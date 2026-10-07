@@ -14,6 +14,12 @@ export const es = {
     viewProjects: "Ver Proyectos",
     contactMe: "Contacto",
     downloadCV: "Descargar CV",
+    terminal: {
+      tabStack: "stack.json",
+      tabArchitecture: "architecture.yml",
+      tabPhilosophy: "philosophy.md",
+      terminalTitle: "cristobal@wasoner-dev:~",
+    },
   },
   about: {
     badge: "Perfil Profesional",

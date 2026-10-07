@@ -16,6 +16,12 @@ export const en: Translations = {
     viewProjects: "View Projects",
     contactMe: "Contact",
     downloadCV: "Download CV",
+    terminal: {
+      tabStack: "stack.json",
+      tabArchitecture: "architecture.yml",
+      tabPhilosophy: "philosophy.md",
+      terminalTitle: "cristobal@wasoner-dev:~",
+    },
   },
   about: {
     badge: "Professional Profile",
