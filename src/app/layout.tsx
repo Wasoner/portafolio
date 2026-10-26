@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 const siteUrl = profile.siteUrl;
 
 const SITE_NAME = profile.siteName;
-const TITLE = `${profile.jobTitle} | ${profile.role} — Soluciones Tecnológicas & Full Stack`;
+const TITLE = `${profile.fullName} | ${profile.role} — Node.js, Python, TypeScript & React`;
 const DESCRIPTION =
-  "Portafolio profesional de Cristóbal Rivas Paul, Ingeniero Civil en Informática y Desarrollador Full Stack. Especializado en APIs RESTful, SaaS B2B, React, Angular, Java (Spring Boot) y bases de datos.";
+  "Portfolio of Cristóbal Rivas Paul, Full Stack Developer specialized in scalable backend architecture with Node.js and Python, API contract design (OpenAPI/Swagger) and modern frontend with TypeScript, React and Next.js. Spec-Driven Development (SDD) and AI-assisted engineering workflows.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -30,26 +30,27 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   keywords: [
     "Full Stack Developer",
-    "Desarrollador Full Stack",
-    "Ingeniero Civil en Informática",
+    "Remote Full Stack Developer",
+    "Node.js",
+    "NestJS",
+    "Express",
+    "Python",
+    "FastAPI",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Angular",
+    "Vue.js",
+    "OpenAPI",
+    "Swagger",
+    "Spec-Driven Development",
+    "REST API",
+    "PostgreSQL",
+    "MongoDB",
+    "Docker",
+    "GitHub Actions",
     "Cristóbal Rivas Paul",
     "Wasoner",
-    "React",
-    "React Native",
-    "Angular",
-    "TypeScript",
-    "Java",
-    "Spring Boot",
-    "Javalin",
-    "FastAPI",
-    "Python",
-    "PHP",
-    "MySQL",
-    "PostgreSQL",
-    "SQL Server",
-    "MongoDB",
-    "API REST",
-    "Tailwind CSS",
     "Santiago Chile",
     "Concepción Chile",
   ],
@@ -113,23 +114,25 @@ const jsonLd = {
         addressRegion: "Biobío",
         addressCountry: "CL",
       },
-      sameAs: [profile.github, profile.linkedin],
+      sameAs: [profile.github, profile.linkedin, profile.whatsapp],
       knowsAbout: [
-        "React",
-        "React Native",
-        "Angular",
-        "TypeScript",
-        "Java",
-        "Spring Boot",
-        "Javalin",
-        "PHP",
+        "Node.js",
+        "Express",
+        "NestJS",
+        "Python",
         "FastAPI",
-        "MySQL",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Angular",
+        "Vue.js",
+        "RESTful APIs",
+        "OpenAPI",
         "PostgreSQL",
-        "SQL Server",
         "MongoDB",
-        "APIs RESTful",
         "Docker",
+        "GitHub Actions",
+        "Spec-Driven Development",
       ],
     },
     {
@@ -173,7 +176,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-canvas text-ink selection:bg-accent/25 selection:text-ink">
         <a
           href="#hero"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-xl focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-xl focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-canvas focus:outline-none"
         >
           Saltar al contenido principal
         </a>

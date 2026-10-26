@@ -17,14 +17,15 @@ export function Badge({ className, variant = "default", children, ...props }: Ba
   const baseStyles =
     "inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full transition-colors duration-300";
 
+  // Single-hue palette (black / gray / orange): semantic variants differ by
+  // icon and label rather than by introducing off-palette hues.
   const variants = {
     default: "bg-surface-2 text-ash border border-line",
     outline: "border border-line text-ash bg-transparent",
-    glow: "bg-transparent text-accent border border-accent/30",
-    accent: "bg-accent/10 text-accent border border-accent/25",
-    success:
-      "bg-emerald-500/10 text-emerald-400 border border-emerald-500/25",
-    warning: "bg-amber-500/10 text-amber-300 border border-amber-500/25",
+    glow: "bg-transparent text-accent border border-accent/40",
+    accent: "bg-accent/10 text-accent border border-accent/30",
+    success: "bg-accent/10 text-accent border border-accent/30",
+    warning: "bg-surface-2 text-ash border border-accent/40",
   };
 
   return (
