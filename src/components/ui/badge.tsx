@@ -4,14 +4,15 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "outline" | "glow" | "accent" | "success" | "warning";
+  variant?: "default" | "success" | "warning";
   children: React.ReactNode;
 }
 
 /**
  * Matte badges: tinted surfaces with hairline borders, never outer glows.
- * `glow` is kept as an alias for the accent outline so section headers read
- * as quiet secondary marks rather than neon chips.
+ * Section headers intentionally do NOT use pills — they render a neutral
+ * monospace eyebrow instead; badges are reserved for item states (private
+ * repo, open source).
  */
 export function Badge({ className, variant = "default", children, ...props }: BadgeProps) {
   const baseStyles =
@@ -21,9 +22,6 @@ export function Badge({ className, variant = "default", children, ...props }: Ba
   // icon and label rather than by introducing off-palette hues.
   const variants = {
     default: "bg-surface-2 text-ash border border-line",
-    outline: "border border-line text-ash bg-transparent",
-    glow: "bg-transparent text-accent border border-accent/40",
-    accent: "bg-accent/10 text-accent border border-accent/30",
     success: "bg-accent/10 text-accent border border-accent/30",
     warning: "bg-surface-2 text-ash border border-accent/40",
   };

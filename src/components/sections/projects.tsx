@@ -6,7 +6,6 @@ import { projectsData, Project } from "@/data/projects";
 import { ProjectCard } from "./project-card";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
 
 // The case-study modal (and its copy) only matters once a card is opened,
 // so it ships as its own chunk instead of riding along with the page.
@@ -42,9 +41,13 @@ export function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35 }}
-            className="mb-3"
+            className="flex items-center justify-center gap-3 mb-4"
           >
-            <Badge variant="accent">{t.projects.badge}</Badge>
+            <span className="h-px w-10 bg-line" aria-hidden />
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
+              {t.projects.badge}
+            </span>
+            <span className="h-px w-10 bg-line" aria-hidden />
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}

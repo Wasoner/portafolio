@@ -69,6 +69,7 @@ export const en: Translations = {
     locationValue: "Santiago / Concepción, Chile — Remote / Hybrid / On-site",
     socialLabel: "Professional Profiles",
     availabilityBadge: "Immediately available for hire",
+    whatsappCta: "Chat on WhatsApp",
     form: {
       email: "Email",
       emailPlaceholder: "your-email@example.com",
@@ -76,9 +77,6 @@ export const en: Translations = {
       subjectPlaceholder: "Message subject or proposal",
       message: "Details",
       messagePlaceholder: "Write the details of your message or proposal...",
-      fileAttachment: "Attach file (optional)",
-      fileSelected: "Selected file:",
-      fileHint: "Supported formats: PDF, DOCX, PNG, JPG (max 5 MB)",
       submit: "Send",
       sending: "Sending...",
       successTitle: "Message Sent Successfully!",
