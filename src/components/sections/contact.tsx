@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from "@/components/ui/icons";
 import { profile } from "@/data/profile";
 import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Paperclip, X } from "lucide-react";
 
@@ -68,7 +68,7 @@ export function ContactSection() {
           particleCount: 60,
           spread: 60,
           origin: { y: 0.7 },
-          colors: ["#6366f1", "#818cf8", "#949ba8"],
+          colors: ["#f97316", "#fb923c", "#949ba8"],
         });
       } else {
         setStatus("error");
@@ -192,19 +192,31 @@ export function ContactSection() {
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors text-xs font-medium"
+                    aria-label="LinkedIn — Cristóbal Rivas Paul"
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/50 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
                   >
-                    <LinkedinIcon className="w-4 h-4 text-accent" />
+                    <LinkedinIcon className="w-4 h-4 text-accent" aria-hidden />
                     <span>LinkedIn Perfil</span>
                   </a>
                   <a
                     href={profile.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/40 transition-colors text-xs font-medium"
+                    aria-label="GitHub — Cristóbal Rivas Paul"
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/50 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
                   >
-                    <GithubIcon className="w-4 h-4 text-accent" />
+                    <GithubIcon className="w-4 h-4 text-accent" aria-hidden />
                     <span>GitHub Repos</span>
+                  </a>
+                  <a
+                    href={profile.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp — Cristóbal Rivas Paul"
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/50 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
+                  >
+                    <WhatsappIcon className="w-4 h-4 text-accent" aria-hidden />
+                    <span>WhatsApp Directo</span>
                   </a>
                 </div>
               </div>
@@ -254,7 +266,7 @@ export function ContactSection() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder={t.contact.form.emailPlaceholder}
-                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/80 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
                     />
                   </div>
 
@@ -269,7 +281,7 @@ export function ContactSection() {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder={t.contact.form.subjectPlaceholder}
-                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
+                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/80 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors"
                     />
                   </div>
 
@@ -285,7 +297,7 @@ export function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder={t.contact.form.messagePlaceholder}
-                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors resize-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/80 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors resize-none"
                     />
                   </div>
 
@@ -333,13 +345,13 @@ export function ContactSection() {
                         </label>
                       )}
                     </div>
-                    <span className="block text-[11px] text-ash/70 mt-1">
+                    <span className="block text-[11px] text-ash mt-1">
                       {t.contact.form.fileHint}
                     </span>
                   </div>
 
                   {status === "error" && (
-                    <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs">
+                    <div className="flex items-center gap-2 p-3 rounded-lg bg-accent/10 border border-accent/30 text-accent text-xs">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>{t.contact.form.errorMessage}</span>
                     </div>

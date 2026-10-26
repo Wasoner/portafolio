@@ -24,7 +24,9 @@ export function Footer() {
             {profile.brand}
             <span className="text-accent">{profile.brandSuffix}</span>
           </a>
-          <span className="hidden sm:inline text-line">|</span>
+          <span className="hidden sm:inline text-ash" aria-hidden>
+            |
+          </span>
           <p className="text-xs text-ash">
             {t.footer.builtWith}
           </p>

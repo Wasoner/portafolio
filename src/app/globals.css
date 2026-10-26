@@ -13,15 +13,24 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Design tokens: surfaces, borders, type and the muted matte brand accent. */
+/* Design tokens — black / gray / orange palette.
+ *
+ * Site is dark-only (see `color-scheme: dark` below); every ratio below was
+ * verified against WCAG 2.1 AA (4.5:1 normal text, 3:1 large text & UI):
+ *   ink   #e6e8ec on canvas #0d0f14 .... ~15.9:1
+ *   ash   #949ba8 on canvas ............. ~6.9:1  | on surface ~6.4:1
+ *   accent #f97316 on canvas ............ ~7.0:1  | on surface ~6.6:1
+ *   canvas text on accent (buttons) ..... ~7.0:1
+ */
 @theme {
-  --color-canvas: #0d0f14;
+  --color-canvas: #0d0f14; /* negro grafito — fondo global */
   --color-surface: #141720;
   --color-surface-2: #1b1e28;
   --color-line: #262a36;
   --color-ink: #e6e8ec;
   --color-ash: #949ba8;
-  --color-accent: #6366f1; /* azul/índigo mate refinado, sin saturación cegadora */
+  --color-accent: #f97316; /* naranjo — texto, iconos e bordes sobre oscuro (7:1) */
+  --color-accent-hover: #fb923c; /* naranjo claro — hover de primarios */
 }
 
 

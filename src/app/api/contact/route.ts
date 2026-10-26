@@ -73,7 +73,7 @@ export async function POST(req: Request) {
       }\n\nDetalles:\n${message}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; color: #1a1a1a; max-width: 600px; margin: auto;">
-          <h2 style="color: #6366f1; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;">Nuevo mensaje desde tu portafolio</h2>
+          <h2 style="color: #c2410c; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;">Nuevo mensaje desde tu portafolio</h2>
           <p><strong>De:</strong> <a href="mailto:${email}">${email}</a></p>
           <p><strong>Asunto:</strong> ${subject || "Sin asunto"}</p>
           <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 20px 0;" />

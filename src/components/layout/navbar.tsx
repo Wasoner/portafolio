@@ -17,6 +17,7 @@ export function Navbar() {
     const SECTION_IDS = [
       "hero",
       "about",
+      "skills",
       "projects",
       "contact",
     ];
@@ -74,6 +75,7 @@ export function Navbar() {
 
   const navLinks = [
     { href: "#about", label: t.nav.about, id: "about" },
+    { href: "#skills", label: t.nav.skills, id: "skills" },
     { href: "#projects", label: t.nav.projects, id: "projects" },
     { href: "#contact", label: t.nav.contact, id: "contact" },
   ];
@@ -101,7 +103,7 @@ export function Navbar() {
           className="text-xl sm:text-2xl font-bold tracking-tight text-white hover:text-white/90 transition-colors duration-200 focus:outline-none flex items-center gap-0.5"
         >
           <span>{profile.brand}</span>
-          <span className="text-[#818cf8]">{profile.brandSuffix}</span>
+          <span className="text-accent">{profile.brandSuffix}</span>
         </a>
 
         {/* Desktop Nav Links */}
@@ -124,9 +126,17 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Actions (Language Switch ES/EN like in screenshot) */}
+        {/* Actions (Language Switch + CV download) */}
         <div className="hidden md:flex items-center gap-3">
           <LanguageToggle />
+          <a
+            href={profile.cvUrl}
+            download={profile.cvFileName}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium bg-surface/80 border border-line text-ash hover:text-ink hover:border-accent/50 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
+          >
+            <Download className="w-3.5 h-3.5" aria-hidden />
+            <span>{t.nav.downloadCV}</span>
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -134,8 +144,10 @@ export function Navbar() {
           <LanguageToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-ash hover:text-ink hover:bg-surface border border-line transition-colors focus:outline-none"
-            aria-label="Abrir menú de navegación"
+            className="p-2 rounded-lg text-ash hover:text-ink hover:bg-surface border border-line transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
+            aria-label={mobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -144,7 +156,10 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="relative md:hidden bg-canvas/95 backdrop-blur-xl px-6 py-5 mt-2 animate-in slide-in-from-top-2 duration-200">
+        <div
+          id="mobile-nav"
+          className="relative md:hidden bg-canvas/95 backdrop-blur-xl px-6 py-5 mt-2 animate-in slide-in-from-top-2 duration-200"
+        >
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <a
@@ -163,8 +178,8 @@ export function Navbar() {
           </div>
           <div className="pt-3 mt-3 border-t border-line flex flex-col gap-2">
             <a
-              href="/cv.pdf"
-              download="CV-Cristobal-Rivas-Paul.pdf"
+              href={profile.cvUrl}
+              download={profile.cvFileName}
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full"
             >
