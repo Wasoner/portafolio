@@ -2,15 +2,13 @@ export const es = {
   nav: {
     home: "Inicio",
     about: "Sobre mí",
+    skills: "Stack",
     projects: "Proyectos",
     contact: "Contacto",
     downloadCV: "Descargar CV",
   },
   hero: {
     greeting: "Hola, soy",
-    name: "Cristóbal Rivas Paul",
-    subtitle:
-      "Ingeniero Civil en Informática & Desarrollador Full Stack. Apasionado por la arquitectura limpia, las soluciones tecnológicas escalables y la ingeniería de software de alto impacto.",
     viewProjects: "Ver Proyectos",
     contactMe: "Contacto",
     downloadCV: "Descargar CV",
@@ -19,49 +17,38 @@ export const es = {
       tabArchitecture: "architecture.yml",
       tabPhilosophy: "philosophy.md",
       terminalTitle: "cristobal@wasoner-dev:~",
+      copySnippet: "Copiar contenido",
     },
   },
   about: {
     badge: "Perfil Profesional",
-    title: "Ingeniería de software con foco en soluciones reales y rendimiento",
-    paragraph1:
-      "Soy Ingeniero Civil en Informática titulado con Distinción Máxima de la Universidad del Bío-Bío. Mi pasión radica en resolver problemas complejos mediante software elegante, mantenible y de alta disponibilidad.",
-    paragraph2:
-      "Cuento con experiencia profesional en desarrollo Full Stack en g-store SpA, donde diseñé e implementé plataformas SaaS B2B, módulos ERP y pasarelas de pago (Transbank Webpay) con Angular, PHP y SQL Server. En el backend desarrollo servicios robustos con Java (Spring Boot, Javalin) y Python (FastAPI), aplicando Clean Architecture, autenticación segura y optimización de bases de datos relacionales y NoSQL.",
-    paragraph3:
-      "Me adapto rápidamente a cualquier stack tecnológico, promuevo la disciplina técnica y buenas prácticas (Scrum, Git Flow, CI/CD, Testing) y aporto valor inmediato a equipos de desarrollo con visión de producto.",
-    highlights: [
-      {
-        title: "Frontend Moderno & Accesible",
-        desc: "Construcción de interfaces reactivas y responsivas con React, Next.js, React Native y Angular, priorizando la experiencia de usuario y rendimiento web.",
-      },
-      {
-        title: "Backend & Arquitectura de APIs",
-        desc: "Servicios escalables en Java (Spring Boot, Javalin), Python (FastAPI) y PHP. Diseño de APIs RESTful seguras con JWT y arquitecturas limpias.",
-      },
-      {
-        title: "Bases de Datos & Persistencia",
-        desc: "Diseño relacional y optimización de consultas en PostgreSQL, MySQL y SQL Server, junto con almacenamiento documental en MongoDB.",
-      },
-      {
-        title: "Calidad, Métodos Ágiles & DevOps",
-        desc: "Trabajo en sprints Scrum, pruebas automatizadas, control de versiones con Git, contenedores Docker y CI/CD orientado a producción.",
-      },
-    ],
+    title: "Ingeniería de software con arquitectura limpia y entrega de alto impacto",
+  },
+  skills: {
+    badge: "Stack Tecnológico",
+    title: "Tecnología agrupada por dominio de ingeniería",
+    subtitle:
+      "Frontend, servicios y contratos de API, persistencia, entrega continua y método. El stack real con el que diseño, construyo y opero software, sin porcentajes arbitrarios.",
   },
   projects: {
     badge: "Portafolio Técnico",
-    title: "Proyectos Destacados en GitHub",
-    subtitle: "Soluciones de software de código abierto con arquitectura por capas, pruebas y documentación técnica.",
+    title: "Proyectos destacados como casos de estudio",
+    subtitle:
+      "Cada proyecto documenta el problema que resuelve, la solución implementada y los retos técnicos superados, con enlaces al código y a la demo.",
     filterAll: "Todos",
     filterFullstack: "Full Stack",
     filterFrontend: "Frontend",
     filterBackend: "Backend",
     viewDetails: "Ver Caso de Estudio",
-    viewLive: "Demo en Vivo",
+    viewLive: "Live Demo",
     viewGithub: "Ver Repositorio",
+    sourceCode: "Código Fuente (GitHub)",
+    problemSolution: "Problema & Solución",
+    problem: "Problema",
+    solution: "Solución",
+    challenges: "Retos Técnicos Superados",
     privateRepo: "Repositorio Privado",
-    techStack: "Tecnologías utilizadas",
+    techStack: "Stack Tecnológico",
     keyFeatures: "Características Principales",
     architecture: "Arquitectura & Desafíos Técnicos",
     closeModal: "Cerrar",
@@ -107,4 +94,3 @@ export const es = {
 };
 
 export type Translations = typeof es;
-

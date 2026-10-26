@@ -83,8 +83,8 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Projects Grid — content-rich cards need the extra width */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <AnimatePresence>
             {filteredProjects.map((project) => (
               <motion.div

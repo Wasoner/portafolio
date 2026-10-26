@@ -5,9 +5,9 @@ import { Project } from "@/data/projects";
 import { useLanguage } from "@/context/language-context";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonClass } from "@/components/ui/button";
 import { GithubIcon } from "@/components/ui/icons";
-import { Lock, ArrowUpRight, Eye } from "lucide-react";
+import { Lock, ArrowUpRight, CheckCircle2, ArrowRight } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
@@ -15,16 +15,17 @@ interface ProjectCardProps {
 }
 
 /**
- * Clean matte project card: no gradient banners or neon glows. Hierarchy comes
- * from typography and a hairline border; the accent only appears on the
- * category badge and hover states.
+ * Case-study card.
+ *
+ * Renders the summary tier of the study: technical title → problem & solution
+ * → two concrete technical challenges → stack chips → labelled action links
+ * (Live Demo / Source Code) with descriptive aria-labels. The full study opens
+ * in the modal.
  */
 export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
-  const { language, t } = useLanguage();
+  const { t, language } = useLanguage();
 
-  const title = project.title;
-  const description =
-    project.shortDescription[language] || project.shortDescription.es;
+  const actionLabel = (label: string) => `${label} — ${project.title}`;
 
   return (
     <Card interactive className="flex flex-col h-full group">
@@ -36,81 +37,105 @@ export function ProjectCard({ project, onOpenModal }: ProjectCardProps) {
 
         {project.isPrivate && (
           <Badge variant="warning" className="text-[10px] gap-1">
-            <Lock className="w-2.5 h-2.5" />
+            <Lock className="w-2.5 h-2.5" aria-hidden />
             <span>{t.projects.privateRepo}</span>
           </Badge>
         )}
       </div>
 
-      {/* Title & Description */}
-      <div className="flex-1 flex flex-col">
-        <h3 className="text-lg font-semibold text-ink group-hover:text-accent transition-colors mb-2.5 line-clamp-1">
-          {title}
-        </h3>
-        <p className="text-sm text-ash leading-relaxed line-clamp-3 mb-5 flex-1">
-          {description}
-        </p>
+      {/* Title */}
+      <h3 className="text-lg font-semibold text-ink group-hover:text-accent transition-colors mb-4">
+        {project.title}
+      </h3>
 
-        {/* Tech Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-6">
-          {project.tags.slice(0, 4).map((tag) => (
-            <span
-              key={tag}
-              className="px-2 py-0.5 text-[11px] font-mono rounded bg-surface-2 text-ash border border-line"
-            >
-              {tag}
-            </span>
-          ))}
-          {project.tags.length > 4 && (
-            <span className="px-2 py-0.5 text-[11px] font-mono rounded text-ash">
-              +{project.tags.length - 4}
-            </span>
-          )}
+      {/* Problem & Solution */}
+      <div className="space-y-3 mb-4">
+        <div>
+          <span className="block text-[11px] font-mono uppercase tracking-wider text-accent mb-1">
+            {t.projects.problem}
+          </span>
+          <p className="text-sm text-ash leading-relaxed">{project.problem[language]}</p>
         </div>
+        <div>
+          <span className="block text-[11px] font-mono uppercase tracking-wider text-accent mb-1">
+            {t.projects.solution}
+          </span>
+          <p className="text-sm text-ash leading-relaxed">{project.solution[language]}</p>
+        </div>
+      </div>
 
-        {/* Card Footer Actions */}
-        <div className="pt-4 border-t border-line flex items-center justify-between gap-2">
-          <Button
-            size="sm"
-            variant="secondary"
-            onClick={() => onOpenModal(project)}
-            className="flex-1 text-xs"
+      {/* Technical Challenges Overcome */}
+      <div className="mb-5">
+        <span className="block text-[11px] font-mono uppercase tracking-wider text-accent mb-2">
+          {t.projects.challenges}
+        </span>
+        <ul className="space-y-2">
+          {project.technicalChallenges[language].map((challenge, i) => (
+            <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-ash leading-relaxed">
+              <CheckCircle2
+                className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5"
+                aria-hidden
+              />
+              <span>{challenge}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Stack badges */}
+      <div className="flex flex-wrap gap-1.5 mb-6" aria-label={t.projects.techStack}>
+        {project.tags.slice(0, 5).map((tag) => (
+          <span
+            key={tag}
+            className="px-2 py-0.5 text-[11px] font-mono rounded bg-surface-2 text-ink border border-line"
           >
-            <Eye className="w-3.5 h-3.5" />
-            <span>{t.projects.viewDetails}</span>
-          </Button>
+            {tag}
+          </span>
+        ))}
+        {project.tags.length > 5 && (
+          <span className="px-2 py-0.5 text-[11px] font-mono rounded text-ash">
+            +{project.tags.length - 5}
+          </span>
+        )}
+      </div>
 
-          {/* GitHub button only if NOT private */}
-          {!project.isPrivate && project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block"
-              title={t.projects.viewGithub}
-              aria-label={t.projects.viewGithub}
-            >
-              <Button size="icon" variant="outline" className="w-8 h-8 p-0">
-                <GithubIcon className="w-3.5 h-3.5" />
-              </Button>
-            </a>
-          )}
-
-          {/* Live demo button if present */}
+      {/* Card Footer Actions */}
+      <div className="mt-auto pt-4 border-t border-line space-y-3">
+        <div className="flex flex-wrap gap-2">
           {project.demoUrl && (
             <a
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block"
-              title={t.projects.viewLive}
+              className={buttonClass("primary", "sm")}
+              aria-label={actionLabel(t.projects.viewLive)}
             >
-              <Button size="icon" variant="outline" className="w-8 h-8 p-0">
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Button>
+              <ArrowUpRight className="w-3.5 h-3.5" aria-hidden />
+              <span>{t.projects.viewLive}</span>
+            </a>
+          )}
+          {!project.isPrivate && project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClass("secondary", "sm")}
+              aria-label={actionLabel(t.projects.sourceCode)}
+            >
+              <GithubIcon className="w-3.5 h-3.5" />
+              <span>{t.projects.sourceCode}</span>
             </a>
           )}
         </div>
+
+        <button
+          onClick={() => onOpenModal(project)}
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-accent hover:text-ink transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 rounded"
+          aria-label={actionLabel(t.projects.viewDetails)}
+        >
+          <span>{t.projects.viewDetails}</span>
+          <ArrowRight className="w-3.5 h-3.5" aria-hidden />
+        </button>
       </div>
     </Card>
   );
