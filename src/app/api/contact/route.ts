@@ -7,7 +7,6 @@ export async function POST(req: Request) {
     const email = formData.get("email") as string | null;
     const subject = formData.get("subject") as string | null;
     const message = formData.get("message") as string | null;
-    const file = formData.get("file") as File | null;
 
     // Validación básica de campos requeridos
     if (!email || !message) {
@@ -21,22 +20,6 @@ export async function POST(req: Request) {
     const user = process.env.EMAIL_USER;
     const pass = process.env.EMAIL_PASS;
     const targetEmail = "tobalpaulrivas@gmail.com";
-
-    // Preparar archivo adjunto si fue provisto
-    const attachments: Array<{
-      filename: string;
-      content: Buffer;
-      contentType: string;
-    }> = [];
-
-    if (file && file.size > 0) {
-      const buffer = Buffer.from(await file.arrayBuffer());
-      attachments.push({
-        filename: file.name,
-        content: buffer,
-        contentType: file.type || "application/octet-stream",
-      });
-    }
 
     if (!user || !pass) {
       console.error(
@@ -79,14 +62,8 @@ export async function POST(req: Request) {
           <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 20px 0;" />
           <p><strong>Detalles del mensaje:</strong></p>
           <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-size: 14px; line-height: 1.5;">${message}</div>
-          ${
-            file && file.size > 0
-              ? `<p style="margin-top: 20px; font-size: 13px; color: #475569;"><em>Archivo adjunto: ${file.name} (${(file.size / 1024).toFixed(1)} KB)</em></p>`
-              : ""
-          }
         </div>
       `,
-      attachments,
     });
 
     console.log(`[Contact API] Correo despachado con éxito. ID: ${info.messageId}`);

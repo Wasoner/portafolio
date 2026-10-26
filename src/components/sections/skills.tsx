@@ -3,7 +3,6 @@
 import React from "react";
 import { useLanguage } from "@/context/language-context";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { skillsData, SkillCategoryId } from "@/data/skills";
 import {
@@ -43,9 +42,13 @@ export function SkillsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35 }}
-            className="mb-3"
+            className="flex items-center justify-center gap-3 mb-4"
           >
-            <Badge variant="accent">{t.skills.badge}</Badge>
+            <span className="h-px w-10 bg-line" aria-hidden />
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
+              {t.skills.badge}
+            </span>
+            <span className="h-px w-10 bg-line" aria-hidden />
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}

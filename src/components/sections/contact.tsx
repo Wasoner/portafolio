@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button, buttonClass } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "@/components/ui/icons";
 import { profile } from "@/data/profile";
-import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Paperclip, X } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 
 export function ContactSection() {
   const { t } = useLanguage();
@@ -17,24 +16,12 @@ export function ContactSection() {
     subject: "",
     message: "",
   });
-  const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const selected = e.target.files[0];
-      if (selected.size > 5 * 1024 * 1024) {
-        alert("El archivo no debe superar los 5 MB.");
-        return;
-      }
-      setFile(selected);
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,9 +35,6 @@ export function ContactSection() {
       body.append("email", formData.email);
       body.append("subject", formData.subject);
       body.append("message", formData.message);
-      if (file) {
-        body.append("file", file);
-      }
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -60,7 +44,6 @@ export function ContactSection() {
       if (res.ok) {
         setStatus("success");
         setFormData({ email: "", subject: "", message: "" });
-        setFile(null);
 
         // Loaded on demand so the ~10 KB library stays out of the initial bundle.
         const { default: confetti } = await import("canvas-confetti");
@@ -89,9 +72,13 @@ export function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.35 }}
-            className="mb-3"
+            className="flex items-center justify-center gap-3 mb-4"
           >
-            <Badge variant="accent">{t.contact.badge}</Badge>
+            <span className="h-px w-10 bg-line" aria-hidden />
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
+              {t.contact.badge}
+            </span>
+            <span className="h-px w-10 bg-line" aria-hidden />
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
@@ -131,11 +118,23 @@ export function ContactSection() {
                 <p className="text-xs text-ash">{t.contact.infoSubtitle}</p>
               </div>
 
+              {/* Primary WhatsApp CTA — highest-visibility contact channel */}
+              <a
+                href={profile.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonClass("primary", "md", "w-full")}
+                aria-label={`${t.contact.whatsappCta} — ${profile.fullName}`}
+              >
+                <WhatsappIcon className="w-4 h-4" aria-hidden />
+                <span>{t.contact.whatsappCta}</span>
+              </a>
+
               {/* Direct Info Items */}
               <div className="space-y-3.5">
                 <div className="flex items-center gap-3.5 p-3 rounded-xl bg-surface-2 border border-line">
                   <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent shrink-0">
-                    <Mail className="w-4 h-4" />
+                    <Mail className="w-4 h-4" aria-hidden />
                   </div>
                   <div className="min-w-0">
                     <span className="text-[11px] font-mono text-ash block uppercase">
@@ -152,15 +151,18 @@ export function ContactSection() {
 
                 <div className="flex items-center gap-3.5 p-3 rounded-xl bg-surface-2 border border-line">
                   <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent shrink-0">
-                    <Phone className="w-4 h-4" />
+                    <WhatsappIcon className="w-4 h-4" aria-hidden />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[11px] font-mono text-ash block uppercase">
                       {t.contact.phoneLabel}
                     </span>
                     <a
-                      href={`tel:${profile.phoneHref}`}
-                      className="text-sm font-medium text-ink hover:text-accent transition-colors"
+                      href={profile.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-ink hover:text-accent transition-colors break-all"
+                      aria-label={`${t.contact.phoneLabel} — ${profile.fullName}`}
                     >
                       {profile.phone}
                     </a>
@@ -169,7 +171,7 @@ export function ContactSection() {
 
                 <div className="flex items-center gap-3.5 p-3 rounded-xl bg-surface-2 border border-line">
                   <div className="w-9 h-9 rounded-lg bg-canvas border border-line flex items-center justify-center text-accent shrink-0">
-                    <MapPin className="w-4 h-4" />
+                    <MapPin className="w-4 h-4" aria-hidden />
                   </div>
                   <div>
                     <span className="text-[11px] font-mono text-ash block uppercase">
@@ -207,16 +209,6 @@ export function ContactSection() {
                   >
                     <GithubIcon className="w-4 h-4 text-accent" aria-hidden />
                     <span>GitHub Repos</span>
-                  </a>
-                  <a
-                    href={profile.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp — Cristóbal Rivas Paul"
-                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-canvas border border-line text-ash hover:text-ink hover:border-accent/50 transition-colors text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
-                  >
-                    <WhatsappIcon className="w-4 h-4 text-accent" aria-hidden />
-                    <span>WhatsApp Directo</span>
                   </a>
                 </div>
               </div>
@@ -299,55 +291,6 @@ export function ContactSection() {
                       placeholder={t.contact.form.messagePlaceholder}
                       className="w-full px-4 py-2.5 rounded-xl bg-canvas border border-line text-ink placeholder:text-ash/80 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent/50 transition-colors resize-none"
                     />
-                  </div>
-
-                  {/* Adjuntar Archivos */}
-                  <div>
-                    <label className="block text-xs font-medium text-ash mb-1.5 font-mono">
-                      {t.contact.form.fileAttachment}
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="file"
-                        id="contact-file-input"
-                        onChange={handleFileChange}
-                        className="hidden"
-                        accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.txt,.zip"
-                      />
-                      {file ? (
-                        <div className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-surface-2 border border-accent/40 text-xs text-ink">
-                          <div className="flex items-center gap-2 truncate">
-                            <Paperclip className="w-4 h-4 text-accent shrink-0" />
-                            <span className="truncate">{file.name}</span>
-                            <span className="text-ash font-mono text-[11px]">
-                              ({(file.size / 1024).toFixed(1)} KB)
-                            </span>
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => setFile(null)}
-                            className="p-1 text-ash hover:text-ink transition-colors ml-2"
-                            title="Remover archivo"
-                          >
-                            <X className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      ) : (
-                        <label
-                          htmlFor="contact-file-input"
-                          className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-canvas border border-dashed border-line hover:border-accent/50 text-xs text-ash hover:text-ink cursor-pointer transition-colors"
-                        >
-                          <span className="flex items-center gap-2">
-                            <Paperclip className="w-4 h-4 text-ash" />
-                            <span>Seleccionar archivo desde tu dispositivo</span>
-                          </span>
-                          <span className="text-[11px] font-mono text-ash/80">Máx. 5 MB</span>
-                        </label>
-                      )}
-                    </div>
-                    <span className="block text-[11px] text-ash mt-1">
-                      {t.contact.form.fileHint}
-                    </span>
                   </div>
 
                   {status === "error" && (

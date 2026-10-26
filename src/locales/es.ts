@@ -67,6 +67,7 @@ export const es = {
     locationValue: "Santiago / Concepción, Chile — Remoto / Híbrido / Presencial",
     socialLabel: "Perfiles Profesionales",
     availabilityBadge: "Disponible para contratación inmediata",
+    whatsappCta: "Conversar por WhatsApp",
     form: {
       email: "Correo",
       emailPlaceholder: "tu-correo@ejemplo.com",
@@ -74,9 +75,6 @@ export const es = {
       subjectPlaceholder: "Asunto del mensaje o propuesta",
       message: "Detalles",
       messagePlaceholder: "Escribe aquí los detalles del mensaje o propuesta...",
-      fileAttachment: "Adjuntar archivo (opcional)",
-      fileSelected: "Archivo seleccionado:",
-      fileHint: "Formatos permitidos: PDF, DOCX, PNG, JPG (máx. 5 MB)",
       submit: "Enviar",
       sending: "Enviando...",
       successTitle: "¡Mensaje Enviado con Éxito!",
