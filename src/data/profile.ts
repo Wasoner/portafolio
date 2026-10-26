@@ -12,7 +12,7 @@ export const profile = {
   /** Full name as it should appear in headings and structured data. */
   fullName: "Cristóbal Rivas Paul",
   /** Short form used in the wordmark (navbar / footer). */
-  brand: "Wasoner",
+  brand: "crivas",
   /** Appended to the brand: "Wasoner" + ".dev" */
   brandSuffix: ".dev",
   jobTitle: "Ingeniero Civil en Informática",
@@ -30,7 +30,6 @@ export const profile = {
 
   email: "tobalpaulrivas@gmail.com",
   phone: "+56 9 2981 3629",
-  phoneHref: "+56929813629",
 
   /** WhatsApp deep link with a pre-filled conversation opener. */
   whatsapp:
