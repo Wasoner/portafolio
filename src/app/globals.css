@@ -9,7 +9,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  /* Aleo (slab serif) for UI/body text; Geist Mono stays for terminal/code
+     roles since Aleo has no monospace cut. */
+  --font-sans: var(--font-aleo);
   --font-mono: var(--font-geist-mono);
 }
 
