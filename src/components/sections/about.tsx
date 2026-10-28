@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useLanguage } from "@/context/language-context";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 import { Card } from "@/components/ui/card";
 import { aboutContent } from "@/data/about";
 
@@ -20,38 +20,22 @@ export function AboutSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
+          <Reveal className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-10 bg-line" aria-hidden />
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
               {t.about.badge}
             </span>
             <span className="h-px w-10 bg-line" aria-hidden />
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.08 }}
-            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight leading-tight"
-          >
-            {t.about.title}
-          </motion.h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight leading-tight">
+              {t.about.title}
+            </h2>
+          </Reveal>
         </div>
 
         {/* Two structured paragraphs */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="max-w-4xl mx-auto space-y-5"
-        >
+        <Reveal className="max-w-4xl mx-auto space-y-5">
           <p className="text-base sm:text-lg leading-relaxed text-ink">
             {paragraph1[language]}
           </p>
@@ -61,7 +45,7 @@ export function AboutSection() {
               {paragraph2[language]}
             </p>
           </Card>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
