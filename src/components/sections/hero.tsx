@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useLanguage } from "@/context/language-context";
-import { motion } from "framer-motion";
 import { buttonClass } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "@/components/ui/icons";
 import { profile } from "@/data/profile";
@@ -51,52 +50,41 @@ export function HeroSection() {
           {/* Left Column: Identity, tagline, CTAs & social links */}
           <div className="lg:col-span-5 text-left flex flex-col justify-center">
             {/* Greeting eyebrow */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="font-mono text-sm text-accent mb-3"
+            <p
+              className="font-mono text-sm text-accent mb-3 animate-fade-up"
             >
               {t.hero.greeting}
-            </motion.p>
+            </p>
 
             {/* Main Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-white mb-3 leading-[1.12]"
+            <h1
+              className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-white mb-3 leading-[1.12] animate-fade-up"
+              style={{ animationDelay: "0.05s" }}
             >
               <span className="block">Cristóbal</span>
               <span className="block">Rivas Paul</span>
-            </motion.h1>
+            </h1>
 
             {/* Role */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.05 }}
-              className="font-mono text-sm sm:text-base tracking-wide text-ink mb-5"
+            <p
+              className="font-mono text-sm sm:text-base tracking-wide text-ink mb-5 animate-fade-up"
+              style={{ animationDelay: "0.1s" }}
             >
               {profile.role}
-            </motion.p>
+            </p>
 
             {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.08 }}
-              className="text-base sm:text-lg text-ash max-w-xl mb-9 leading-relaxed font-normal"
+            <p
+              className="text-base sm:text-lg text-ash max-w-xl mb-9 leading-relaxed font-normal animate-fade-up"
+              style={{ animationDelay: "0.12s" }}
             >
               {profile.tagline[language]}
-            </motion.p>
+            </p>
 
             {/* Call to Actions */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.16 }}
-              className="flex flex-wrap items-center gap-3.5 mb-8"
+            <div
+              className="flex flex-wrap items-center gap-3.5 mb-8 animate-fade-up"
+              style={{ animationDelay: "0.2s" }}
             >
               <a href="#projects" className={buttonClass("primary", "md")}>
                 <span>{t.hero.viewProjects}</span>
@@ -109,14 +97,12 @@ export function HeroSection() {
               >
                 <span>{t.hero.downloadCV}</span>
               </a>
-            </motion.div>
+            </div>
 
             {/* Social Links: GitHub, LinkedIn, WhatsApp */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.35, delay: 0.22 }}
-              className="flex flex-wrap items-center gap-2.5"
+            <div
+              className="flex flex-wrap items-center gap-2.5 animate-fade-up"
+              style={{ animationDelay: "0.25s" }}
             >
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -134,15 +120,13 @@ export function HeroSection() {
                   </a>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Column: interactive code terminal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.45, delay: 0.2 }}
-            className="lg:col-span-7 w-full text-left rounded-2xl bg-[#111319]/95 border border-[#232734] overflow-hidden shadow-2xl shadow-black/70 backdrop-blur-md"
+          <div
+            className="lg:col-span-7 w-full text-left rounded-2xl bg-[#111319]/95 border border-[#232734] overflow-hidden shadow-2xl shadow-black/70 backdrop-blur-md animate-fade-scale"
+            style={{ animationDelay: "0.2s" }}
           >
             {/* Terminal Window Header Bar */}
             <div className="flex items-center justify-between gap-2 px-4 py-3 bg-[#181b24] border-b border-[#232734] select-none">
@@ -199,7 +183,7 @@ export function HeroSection() {
                 <code>{terminalSnippets[activeTab]}</code>
               </pre>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

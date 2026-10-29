@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useLanguage } from "@/context/language-context";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 import { Card } from "@/components/ui/card";
 import { skillsData, SkillCategoryId } from "@/data/skills";
 import {
@@ -37,37 +37,23 @@ export function SkillsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
+          <Reveal className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-10 bg-line" aria-hidden />
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
               {t.skills.badge}
             </span>
             <span className="h-px w-10 bg-line" aria-hidden />
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.08 }}
-            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3"
-          >
-            {t.skills.title}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.15 }}
-            className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
-          >
-            {t.skills.subtitle}
-          </motion.p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3">
+              {t.skills.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+              {t.skills.subtitle}
+            </p>
+          </Reveal>
         </div>
 
         {/* Domain Cards */}
@@ -75,14 +61,7 @@ export function SkillsSection() {
           {skillsData.map((category, idx) => {
             const Icon = categoryIcons[category.id];
             return (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: idx * 0.06 }}
-                className="h-full"
-              >
+              <Reveal key={category.id} delay={idx * 0.06} className="h-full">
                 <Card interactive className="h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
                     <div
@@ -107,7 +86,7 @@ export function SkillsSection() {
                     ))}
                   </ul>
                 </Card>
-              </motion.div>
+              </Reveal>
             );
           })}
         </div>
