@@ -5,7 +5,7 @@ import { useLanguage } from "@/context/language-context";
 import { projectsData, Project } from "@/data/projects";
 import { ProjectCard } from "./project-card";
 import dynamic from "next/dynamic";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 
 // The case-study modal (and its copy) only matters once a card is opened,
 // so it ships as its own chunk instead of riding along with the page.
@@ -36,37 +36,23 @@ export function ProjectsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
+          <Reveal className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-10 bg-line" aria-hidden />
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
               {t.projects.badge}
             </span>
             <span className="h-px w-10 bg-line" aria-hidden />
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.08 }}
-            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3"
-          >
-            {t.projects.title}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.15 }}
-            className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
-          >
-            {t.projects.subtitle}
-          </motion.p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3">
+              {t.projects.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+              {t.projects.subtitle}
+            </p>
+          </Reveal>
         </div>
 
         {/* Filter Buttons */}
@@ -86,25 +72,21 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        {/* Projects Grid — content-rich cards need the extra width */}
+        {/* Projects Grid — content-rich cards need the extra width.
+            Cards animate in with pure CSS (works without JS too). */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ProjectCard
-                  project={project}
-                  onOpenModal={(proj) => setSelectedProject(proj)}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {filteredProjects.map((project, idx) => (
+            <div
+              key={project.id}
+              className="animate-fade-up"
+              style={{ animationDelay: `${Math.min(idx, 4) * 0.06}s` }}
+            >
+              <ProjectCard
+                project={project}
+                onOpenModal={(proj) => setSelectedProject(proj)}
+              />
+            </div>
+          ))}
         </div>
       </div>
 

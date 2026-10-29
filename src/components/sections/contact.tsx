@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useLanguage } from "@/context/language-context";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 import { Card } from "@/components/ui/card";
 import { Button, buttonClass } from "@/components/ui/button";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "@/components/ui/icons";
@@ -67,49 +67,29 @@ export function ContactSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
-            className="flex items-center justify-center gap-3 mb-4"
-          >
+          <Reveal className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-10 bg-line" aria-hidden />
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-ash">
               {t.contact.badge}
             </span>
             <span className="h-px w-10 bg-line" aria-hidden />
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.08 }}
-            className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3"
-          >
-            {t.contact.title}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.15 }}
-            className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed"
-          >
-            {t.contact.subtitle}
-          </motion.p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-ink tracking-tight mb-3">
+              {t.contact.title}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p className="text-ash text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+              {t.contact.subtitle}
+            </p>
+          </Reveal>
         </div>
 
         {/* Contact Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Info & Socials */}
-          <motion.div
-            initial={{ opacity: 0, x: -15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="lg:col-span-5 space-y-6"
-          >
+          <Reveal direction="left" className="lg:col-span-5 space-y-6">
             <Card className="p-6 space-y-6 bg-surface">
               <div>
                 <h3 className="text-base sm:text-lg font-semibold text-ink mb-1">
@@ -213,16 +193,10 @@ export function ContactSection() {
                 </div>
               </div>
             </Card>
-          </motion.div>
+          </Reveal>
 
           {/* Right Column: Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7"
-          >
+          <Reveal direction="right" delay={0.1} className="lg:col-span-7">
             <Card className="p-6 sm:p-8">
               {status === "success" ? (
                 <div className="text-center py-10 space-y-4">
@@ -320,7 +294,7 @@ export function ContactSection() {
                 </form>
               )}
             </Card>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

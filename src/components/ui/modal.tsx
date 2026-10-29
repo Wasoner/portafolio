@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
 interface ModalProps {
@@ -35,26 +34,22 @@ export function Modal({
     };
   }, [isOpen, onClose]);
 
+  // Sin AnimatePresence: la entrada se anima con CSS puro (.animate-modal-in /
+  // .animate-backdrop-in en globals.css) y la salida es instantánea. Así el
+  // modal no arrastra framer-motion al bundle y funciona sin JS intermedio.
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             onClick={onClose}
-            className="fixed inset-0 bg-canvas/80 backdrop-blur-md"
+            className="fixed inset-0 bg-canvas/80 backdrop-blur-md animate-backdrop-in"
           />
 
           {/* Modal Content */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className={`relative w-full ${maxWidth} bg-surface border border-line rounded-2xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col`}
+          <div
+            className={`relative w-full ${maxWidth} bg-surface border border-line rounded-2xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col animate-modal-in`}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-line bg-surface sticky top-0 z-20">
@@ -72,9 +67,9 @@ export function Modal({
             <div className="p-6 overflow-y-auto space-y-6 text-ash">
               {children}
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

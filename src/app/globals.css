@@ -59,6 +59,85 @@ body {
 }
 
 
+/* Progressive reveal (see src/components/ui/reveal.tsx).
+ *
+ * Content ships visible in the server HTML; only after hydration — and only
+ * for visitors who do NOT ask for reduced motion — the `Reveal` effect adds
+ * data-reveal="…|visible" and CSS takes over. Without JS the attributes never
+ * appear, so every section stays readable. */
+[data-reveal="up"] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+[data-reveal="left"] {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+
+[data-reveal="right"] {
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.45s ease-out var(--reveal-delay, 0s),
+    transform 0.45s ease-out var(--reveal-delay, 0s);
+}
+
+/* Pure-CSS entrance animations (hero on load, modal, drawer). No JS needed,
+   so they also run for no-JS visitors; the reduced-motion block below parks
+   them at their final (visible) state. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+.animate-fade-scale {
+  animation: fade-scale 0.45s ease-out both;
+}
+
+.animate-backdrop-in {
+  animation: backdrop-in 0.2s ease-out both;
+}
+
+.animate-modal-in {
+  animation: fade-up 0.25s ease-out both;
+}
+
 /* Respect the OS-level motion preference: parks CSS animation and the
    particle canvas, which also checks this query before starting its loop. */
 @media (prefers-reduced-motion: reduce) {
@@ -70,8 +149,17 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  /* Safety net: even if a reveal was armed before the preference applied,
+     never leave content hidden from reduced-motion visitors. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
