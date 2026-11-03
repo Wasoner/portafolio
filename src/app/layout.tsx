@@ -1,16 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Aleo, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
-// Aleo (slab serif) is served as static instances, so weights must be listed
-// explicitly. Only the weights actually used by the design are loaded:
-// 400 (body), 500 (medium), 600 (semibold headings) and 700 (bold hero/wordmark).
-const aleo = Aleo({
-  variable: "--font-aleo",
+// Geist Sans (variable, latin) carries every UI/body role; Geist Mono is kept
+// for terminal/code roles. Both are self-hosted by next/font, so there is no
+// third-party request and no render-blocking font CSS.
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -170,7 +168,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${aleo.variable} ${geistMono.variable} h-full scroll-smooth antialiased bg-canvas`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased bg-canvas`}
     >
       <head>
         <script
